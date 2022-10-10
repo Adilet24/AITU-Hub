@@ -21,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            return;
+        }
+
         Vector2 inputVector = playerInputActions.Player.Move.ReadValue<Vector2>();
         if (inputVector.x != 0 || inputVector.y != 0)
         {
@@ -28,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rbody.AddForce((-rbody.velocity) * Time.deltaTime * 150);
+            rbody.AddForce((-rbody.velocity) * Time.deltaTime * 500);
         }
     }
 
